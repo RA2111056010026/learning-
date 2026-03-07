@@ -1,53 +1,44 @@
 a =list(map(int,input("enter the array \n").split("-")))
 b=len(a)
 c=a[:]
-d=0
-print(b)
-i=0
 y=True
-while y:
-    for x in range(b-i-1):
-        if c[x]<=c[x+1]:
-            d=d+1
-            if d==(b-i-1):
-                print("smart hai ")
-                y=False
-                i=0
+def bubblesort(c):
+    i=0
+    y=True
+    b=len(c)
+    while y:
+        y=False
+        for x in range(b-i-1):
+            if c[x]<=c[x+1]:
+                pass
+            else:
+                y=True
+                c[x],c[x+1]=c[x+1],c[x]
+        i +=1
+    return c
+def shift(a,bound,c):
+    while bound>=a:
+        c[bound]=c[bound-1]
+        bound-=1
+def insertionsort(c):
+    for i in range(1,b):
+        for t in range(i):
+            if c[i]<c[i-1]:
+                c[i],c[i-1]=c[i-1],c[i]
+                i-=1
+            else:
                 break
-            continue
-        else:
-            d=0
-            temp=c[x]
-            c[x]=c[x+1]
-            c[x+1]=temp
-    i +=1
-print(f"bubble sort= {c} end")
-c=a[:]
-y=True
-"""def shifting(a,bound):
-    if bound==(b-1):
-        
-    for i in range(a,bound):
-        for x in range(bound-a,,-1):
-   """  
-def swapnext(f):
-    temp=c[f]
-    c[f]=c[f+1]
-    c[f+1]=temp
-def swapprev(f):
-    temp=c[f]
-    c[f]=c[f-1]
-    c[f-1]=temp
-def swap(f,g):
-    temp=c[f]
-    c[f]=c[g]
-    c[g]=temp
-for i in range(1,b):
-    for t in range(i):
-        if c[i]<c[i-1]:
-            swapprev(i)
-            i-=1
-        else:
-            break
-    print(f"insertion sort pass {i} = {c}")
-print(f"insertion sort= {c} end")
+    print(f"insertion sort= {c} end")
+    return c
+def selectionsort(c):
+    b=len(c)
+    for i in range (b):
+        temp =i
+        j=i
+        while j<b:
+            if c[j]<=c[temp]:
+                temp=j
+            j+=1
+        c[i],c[temp]=c[temp],c[i]
+    print(f"selection sort= {c} end")
+    return c
