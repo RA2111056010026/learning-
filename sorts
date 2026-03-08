@@ -61,3 +61,22 @@ def mergesort(c, a=0, b=None):
         mergesort(c,a,mid)
         mergesort(c,mid+1,b)
         merge(c,a,b,mid)
+def quicksort(c, i=0, j=None):
+    if j is None:
+        j = len(c) - 1
+    if i >= j:
+        return c
+    a = i+1
+    b = j
+    pivot=c[i]
+    while a<=b:
+        while a<=b and c[a]<=pivot:
+            a+=1
+        while a<=b and c[b]>pivot:
+            b-=1
+        if a<b:
+            c[a],c[b]=c[b],c[a]
+    c[i],c[b]=c[b],c[i]
+    quicksort(c,i,b-1)
+    quicksort(c,b+1,j)
+    return c
