@@ -1,0 +1,55 @@
+boat_side="right"
+i=True
+mr=3
+cr=3
+ml=0
+cl=0
+em=('\U0001f482')
+ec =('\U0001f479')
+water =('\U0001f30a')
+boat =('\U0001f6A2')
+def transfer_left(m,c):
+    global mr,cr,ml,cl
+    mr-=m
+    cr-=c
+    ml+=m
+    cl+=c
+def transfer_right(m,c):
+    global mr,cr,ml,cl
+    mr+=m
+    cr+=c
+    ml-=m
+    cl-=c
+def printg(side):
+    if side=="right":
+        print(em*ml,ec*cl,"|",water*4,boat,"|",em*mr,ec*cr)
+    else:
+        print(em*ml,ec*cl,"|",boat,water*4,"|",em*mr,ec*cr)
+
+while i==True:
+    printg(boat_side)
+    a=int(input("select no of missionaries to send "))
+    b=int(input("select no of cannibals to send "))
+    if a+b==0:
+        print("add some people in the boat ")
+        continue
+    if boat_side=="right":
+        if a+b<=2 and a<=mr and b<=cr:
+            transfer_left(a,b)
+            boat_side="left"
+        else:
+            print("invalid move 1")
+    else:
+        if a+b<=2 and a<=ml and b<=cl:
+            transfer_right(a,b)
+            boat_side="right"
+        else:
+            print("invalid move 1")
+    if (ml>0 and cl>ml)or(mr>0 and cr>mr):
+        print("you loose")
+        i=False
+
+    if mr==0 and cr==0 and ml==3 and cl==3:
+        print("you win")
+        i=False
+
